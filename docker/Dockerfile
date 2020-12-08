@@ -9,8 +9,11 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
     apt-get update && \
     apt-get -y install mariadb-client nodejs wget && \
-    rm -rf /var/lib/apt/lists/* && \
-    npm install -g nodemon
+    npm install -g nodemon && \
+    ldconfig && \
+    apt-get clean && \
+    apt-get autoremove && \
+    rm -rf /var/lib/apt/lists/* /tmp/* ~/*
 
 WORKDIR /app
 
